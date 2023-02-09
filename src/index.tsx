@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./pages/App";
 import '@vkontakte/vkui/dist/vkui.css';
-import { AdaptivityProvider, ConfigProvider } from "@vkontakte/vkui";
+import { AdaptivityProvider, ConfigProvider, SizeType } from "@vkontakte/vkui";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -11,7 +11,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ConfigProvider appearance="dark">
-      <AdaptivityProvider>
+      <AdaptivityProvider sizeY={SizeType.REGULAR}>
         <App />
       </AdaptivityProvider>
     </ConfigProvider>

@@ -10,3 +10,7 @@ body {
 #root {
   height: 100%;
 }
+
+.vkuiSimpleCell__children {
+  width: 100%;
+}

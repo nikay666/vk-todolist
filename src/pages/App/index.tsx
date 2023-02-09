@@ -1,17 +1,20 @@
-import React from "react";
+import React from 'react';
+
 import {
   AppRoot,
-  SplitLayout,
-  SplitCol,
-  View,
+  Cell,
+  Group,
+  Header,
   Panel,
   PanelHeader,
-  Header,
-  Group,
-  Cell,
-} from "@vkontakte/vkui";
-import "@vkontakte/vkui/dist/vkui.css";
+  SplitCol,
+  SplitLayout,
+  View,
+} from '@vkontakte/vkui';
+import '@vkontakte/vkui/dist/vkui.css';
 
+import AddNewTaskForm from '../../components/AddNewTaskForm';
+import ToDoList from '../../components/ToDoList';
 
 const App = () => {
   return (
@@ -21,11 +24,9 @@ const App = () => {
           <View activePanel="main">
             <Panel id="main">
               <PanelHeader>Todo list</PanelHeader>
-              <Group header={<Header mode="secondary">Items</Header>}>
-                <Cell {...{ mode: "removable", after: <div>Hello</div> }}>
-                  <div>Hello</div>
-                </Cell>
-                <Cell>World</Cell>
+              <Group>
+                <AddNewTaskForm />
+                <ToDoList />
               </Group>
             </Panel>
           </View>

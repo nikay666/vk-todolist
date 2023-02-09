@@ -1,0 +1,17 @@
+{
+  "singleQuote": true,
+  "trailingComma": "all",
+  "arrowParens": "avoid",
+  "endOfLine": "auto",
+  "importOrder": [
+    "^react",
+    "^@mui/\\w",
+    "^@?\\w",
+    "^~/(assets|components|context|hooks|lib|pages|routes|services|styles|ui|utils)/?(.*)$",
+    "^~/?(.*)$",
+    "^[./]" 
+  ],
+  "importOrderSeparation": true, 
+  "importOrderSortSpecifiers": true,
+  "plugins": ["@trivago/prettier-plugin-sort-imports"]
+}
