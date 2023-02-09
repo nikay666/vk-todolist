@@ -1,20 +1,18 @@
 import React from 'react';
+import {  Outlet } from 'react-router-dom';
+
 
 import {
   AppRoot,
-  Cell,
-  Group,
-  Header,
   Panel,
   PanelHeader,
+  
   SplitCol,
   SplitLayout,
   View,
 } from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
-
-import AddNewTaskForm from '../../components/AddNewTaskForm';
-import ToDoList from '../../components/ToDoList';
+import LogoutButton from './components/LogoutButton';
 
 const App = () => {
   return (
@@ -23,11 +21,8 @@ const App = () => {
         <SplitCol autoSpaced>
           <View activePanel="main">
             <Panel id="main">
-              <PanelHeader>Todo list</PanelHeader>
-              <Group>
-                <AddNewTaskForm />
-                <ToDoList />
-              </Group>
+              <PanelHeader after={<LogoutButton />}>Todo list</PanelHeader>
+              <Outlet />
             </Panel>
           </View>
         </SplitCol>
