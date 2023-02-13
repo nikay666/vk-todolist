@@ -1,5 +1,6 @@
 {
   "name": "vk-todolist",
+  "homepage": "https://nikay666.github.io/vk-todolist",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -13,9 +14,11 @@
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@vkontakte/icons": "^2.14.0",
+    "@vkontakte/superappkit": "^1.58.5",
     "@vkontakte/vk-bridge": "^2.7.2",
     "@vkontakte/vkui": "^5.1.0",
     "firebase": "^9.17.1",
+    "gh-pages": "^5.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-firebase-hooks": "^5.1.1",
@@ -30,7 +33,9 @@
     "start": "craco start",
     "build": "INLINE_RUNTIME_CHUNK=false craco build",
     "test": "craco test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [

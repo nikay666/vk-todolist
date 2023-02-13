@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter, createHashRouter } from 'react-router-dom';
 
 import {
   AdaptivityProvider,
@@ -18,7 +18,7 @@ import ListPage from './pages/List';
 import Login from './pages/Login';
 import { store } from './store';
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: '/',
     element: <App />,
@@ -52,5 +52,5 @@ root.render(
         </AdaptivityProvider>
       </ConfigProvider>
     </Provider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );

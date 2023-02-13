@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Outlet } from 'react-router-dom';
+import { Outlet, redirect } from 'react-router-dom';
 
 import {
   AppRoot,
@@ -29,6 +29,7 @@ const App = () => {
   useEffect(() => {
     if (firebaseUser) addUser(firebaseUser);
   }, [loading]);
+
 
   return (
     <AppRoot>

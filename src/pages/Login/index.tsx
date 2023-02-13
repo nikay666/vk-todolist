@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Navigate } from 'react-router-dom';
 
@@ -29,7 +29,7 @@ const LoginPage = () => {
     <Group>
       <Header mode="secondary">Выберите способ авторизации</Header>
       <Cell onClick={() => authHandler(AuthProviderTypes.google)}>Google</Cell>
-      <Cell>Github</Cell>
+      <Cell onClick={() => authHandler(AuthProviderTypes.github)}>Github</Cell>
       <Cell>VK</Cell>
     </Group>
   );
