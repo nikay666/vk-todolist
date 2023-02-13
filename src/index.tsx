@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import {
@@ -10,10 +11,12 @@ import {
 } from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
 
-import './index.css';
 import App from './app';
+import RequireAuth from './components/RequireAuth';
+import './index.css';
 import ListPage from './pages/List';
 import Login from './pages/Login';
+import { store } from './store';
 
 const router = createBrowserRouter([
   {
@@ -22,7 +25,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <ListPage />,
+        element: (
+          <RequireAuth>
+            <ListPage />
+          </RequireAuth>
+        ),
       },
       {
         path: '/login',
@@ -35,13 +42,16 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
+
 root.render(
   <React.StrictMode>
-    <ConfigProvider appearance="dark" webviewType={WebviewType.INTERNAL}>
-      <AdaptivityProvider sizeY={SizeType.REGULAR}>
-        <RouterProvider router={router} />
-      </AdaptivityProvider>
-    </ConfigProvider>
+    <Provider store={store}>
+      <ConfigProvider appearance="dark" webviewType={WebviewType.INTERNAL}>
+        <AdaptivityProvider sizeY={SizeType.REGULAR}>
+          <RouterProvider router={router} />
+        </AdaptivityProvider>
+      </ConfigProvider>
+    </Provider>
     ,
   </React.StrictMode>,
 );

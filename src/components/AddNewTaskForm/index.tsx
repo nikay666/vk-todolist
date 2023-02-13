@@ -3,8 +3,13 @@ import React, { useState } from 'react';
 import { Icon20AddAlt } from '@vkontakte/icons';
 import { FormLayout, Input } from '@vkontakte/vkui';
 
+import { useActions } from '~/hooks/useActions';
+import { useTypedSelector } from '~/hooks/useTypedSelector';
+
 const AddNewTaskForm = () => {
   const [value, setValue] = useState('');
+  const user = useTypedSelector(state => state.user);
+  const { addItem } = useActions();
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
@@ -12,6 +17,7 @@ const AddNewTaskForm = () => {
 
   const submitHandler = (e: React.FormEvent<HTMLElement>) => {
     e.preventDefault();
+    addItem({ userId: user.id, value });
     setValue('');
   };
 
@@ -21,9 +27,9 @@ const AddNewTaskForm = () => {
         {...{
           id: 'name',
           before: <Icon20AddAlt />,
-          defaultValue: value,
           value,
           onChange: changeHandler,
+          placeholder: 'Добавьте новую задачу'
         }}
       />
     </FormLayout>

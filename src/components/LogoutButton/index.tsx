@@ -5,10 +5,17 @@ import { Icon24DoorArrowRightOutline } from '@vkontakte/icons';
 import { PanelHeaderButton } from '@vkontakte/vkui';
 
 import style from './index.module.css';
+import { getAuth } from 'firebase/auth';
 
 const LogoutButton = () => {
+  const auth = getAuth();
+
+  const clickHandler = () => {
+    auth.signOut()
+  };
+
   return (
-    <PanelHeaderButton className={style.root}>
+    <PanelHeaderButton aria-label='Выход' className={style.root} onClick={clickHandler}>
       <Link to="/login" className={style.link}>
         <Icon24DoorArrowRightOutline />
       </Link>

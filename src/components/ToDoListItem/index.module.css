@@ -7,12 +7,6 @@
   border-bottom: 0.25px solid rgba(255, 255, 255, 0.25);
 }
 
-/* .card {
-  display: flex;
-  padding: 16px;
-  border: 1px solid white;
-} */
-
 .buttons {
   display: flex;
   gap: 8px;
@@ -25,7 +19,7 @@
   outline: none;
   color: inherit;
   padding: 0;
-  
+
   font-family: var(--vkui--font_text--font_family--regular);
   font-size: var(--vkui--font_text--font_size--regular);
   font-weight: var(--vkui--font_text--font_weight--regular);

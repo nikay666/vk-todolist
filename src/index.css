@@ -14,3 +14,8 @@ body {
 .vkuiSimpleCell__children {
   width: 100%;
 }
+
+.vkuiPanelHeader__after {
+  display: flex;
+  align-items: center;
+}

@@ -4,9 +4,12 @@ import { Icon28EditOutline } from '@vkontakte/icons';
 import { Icon28DeleteOutlineAndroid } from '@vkontakte/icons';
 import { Cell, IconButton, Text } from '@vkontakte/vkui';
 
+import { useActions } from '~/hooks/useActions';
+
 import style from './index.module.css';
 
 export interface ToDoListItemProps {
+  userId: string;
   id: string;
   checked: boolean;
   value: string;
@@ -15,27 +18,45 @@ export interface ToDoListItemProps {
 const ToDoListItem: React.FC<ToDoListItemProps> = ({
   checked,
   id,
-
+  userId,
   value: defaultValue,
 }) => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [isChecked, setIsChecked] = useState(checked);
   const [value, setValue] = useState(defaultValue);
 
+  const { removeItem, editItem } = useActions();
+
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const editHandler = () => {
-    setIsEditMode(prev => !prev);
-  };
+  const editToggle = () => setIsEditMode(prev => !prev);
 
-  const deleteHandler = () => {};
+  const deleteHandler = () => removeItem({ userId, id });
 
   const selectHandler = () => {
     setIsChecked(prev => !prev);
+
+    editItem({
+      userId,
+      id,
+      checked: !isChecked,
+      value,
+    });
   };
 
-  const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) =>
     setValue(e.target.value);
+
+  const editHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key !== 'Enter') return;
+
+    editItem({
+      userId,
+      id,
+      checked: !isChecked,
+      value,
+    });
+    setIsEditMode(prev => !prev);
   };
 
   useEffect(() => {
@@ -49,10 +70,10 @@ const ToDoListItem: React.FC<ToDoListItemProps> = ({
       {...{
         after: (
           <>
-            <IconButton onClick={editHandler}>
+            <IconButton aria-label="Редактировать" onClick={editToggle}>
               <Icon28EditOutline />
             </IconButton>
-            <IconButton onClick={deleteHandler}>
+            <IconButton aria-label="Удалить" onClick={deleteHandler}>
               <Icon28DeleteOutlineAndroid />
             </IconButton>
           </>
@@ -60,21 +81,23 @@ const ToDoListItem: React.FC<ToDoListItemProps> = ({
 
         Component: 'li',
         className: style.root,
+        name: id,
         hasHover: false,
         hasActive: false,
         mode: 'selectable',
-        name: id,
-
         checked: isChecked,
         onChange: selectHandler,
       }}
     >
       {isEditMode ? (
         <input
-          ref={inputRef}
-          className={style.input}
-          defaultValue={value}
-          onChange={changeHandler}
+          {...{
+            ref: inputRef,
+            className: style.input,
+            value: value,
+            onChange: changeHandler,
+            onKeyDown: editHandler,
+          }}
         />
       ) : (
         <Text className={isChecked ? style.completed : ''}>{value}</Text>
