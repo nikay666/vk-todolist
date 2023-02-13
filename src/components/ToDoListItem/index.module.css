@@ -1,6 +1,8 @@
 .root {
   padding: 8px 0;
   width: 100%;
+  animation-name: appear;
+  animation-duration: 0.25s;
 }
 
 .root:not(:last-child) {
@@ -32,4 +34,29 @@
 
 .completed {
   text-decoration: line-through;
+}
+
+.isAnimation {
+  animation-name: fade;
+  animation-duration: 0.25s;
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }

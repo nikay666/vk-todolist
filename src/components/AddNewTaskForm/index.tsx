@@ -6,7 +6,11 @@ import { FormLayout, Input } from '@vkontakte/vkui';
 import { useActions } from '~/hooks/useActions';
 import { useTypedSelector } from '~/hooks/useTypedSelector';
 
-const AddNewTaskForm = () => {
+interface Props {
+  classNames?: string;
+}
+
+const AddNewTaskForm: React.FC<Props> = ({ classNames }) => {
   const [value, setValue] = useState('');
   const user = useTypedSelector(state => state.user);
   const { addItem } = useActions();
@@ -22,14 +26,18 @@ const AddNewTaskForm = () => {
   };
 
   return (
-    <FormLayout id="add-new-task" onSubmit={submitHandler}>
+    <FormLayout
+      id="add-new-task"
+      onSubmit={submitHandler}
+      className={classNames}
+    >
       <Input
         {...{
           id: 'name',
           before: <Icon20AddAlt />,
           value,
           onChange: changeHandler,
-          placeholder: 'Добавьте новую задачу'
+          placeholder: 'Добавьте новую задачу',
         }}
       />
     </FormLayout>

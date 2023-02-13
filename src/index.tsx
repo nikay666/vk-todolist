@@ -52,6 +52,5 @@ root.render(
         </AdaptivityProvider>
       </ConfigProvider>
     </Provider>
-    ,
-  </React.StrictMode>,
+  </React.StrictMode>
 );

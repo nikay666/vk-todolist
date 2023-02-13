@@ -1,6 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { addListItem, editListItem, getList, removeListItem } from '~/api';
+import {
+  addListItem,
+  createTaskId,
+  editListItem,
+  getList,
+  removeListItem,
+} from '~/api';
 
 import { ToDoListItem } from './types';
 
@@ -20,13 +26,14 @@ export const listSlice = createSlice({
       return state.filter(el => el.id !== action.payload.id);
     },
     addItem: (state, action) => {
+      const id = createTaskId();
       state.push({
         userId: action.payload.userId,
-        id: `task_${Date.now()}_temporal_id`,
+        id,
         checked: false,
         value: action.payload.value,
       });
-      addListItem(action.payload);
+      addListItem({...action.payload, id});
     },
     editItem: (state, { payload }) => {
       editListItem(payload);

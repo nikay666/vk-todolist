@@ -22,6 +22,8 @@ import { AUTH_PROVIDERS } from './constants';
 import { auth, db } from './firebaseConfig';
 import { AuthProviderTypes } from './types';
 
+export const createTaskId = () => `task_${Date.now()}`;
+
 export const authWithProviders = async (type: AuthProviderTypes) => {
   const provider = AUTH_PROVIDERS[type];
 
@@ -54,15 +56,16 @@ export const getList = async (userId: string) => {
 };
 
 export const addListItem = async ({
+  id,
   userId,
   value,
 }: {
+  id: string;
   userId: string;
   value: string;
 }) => {
-  const id = `task_${Date.now()}`;
-
   await setDoc(doc(db, 'users', userId, 'tasks', id), {
+    userId,
     id,
     checked: false,
     value,

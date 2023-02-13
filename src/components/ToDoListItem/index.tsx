@@ -31,7 +31,15 @@ const ToDoListItem: React.FC<ToDoListItemProps> = ({
 
   const editToggle = () => setIsEditMode(prev => !prev);
 
-  const deleteHandler = () => removeItem({ userId, id });
+  const [isAnimation, setIsAnimation] = useState(false);
+
+  const deleteHandler = () => {
+    setIsAnimation(true);
+    setTimeout(() => {
+      removeItem({ userId, id });
+      setIsAnimation(false);
+    }, 250);
+  };
 
   const selectHandler = () => {
     setIsChecked(prev => !prev);
@@ -80,7 +88,7 @@ const ToDoListItem: React.FC<ToDoListItemProps> = ({
         ),
 
         Component: 'li',
-        className: style.root,
+        className: `${style.root} ${isAnimation ? style.isAnimation : ''}`,
         name: id,
         hasHover: false,
         hasActive: false,
