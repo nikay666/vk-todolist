@@ -1,13 +1,5 @@
-import { redirect } from 'react-router-dom';
-
+import { signInWithPopup } from 'firebase/auth';
 import {
-  GithubAuthProvider,
-  GoogleAuthProvider,
-  signInWithPopup,
-} from 'firebase/auth';
-import { child, get, push, query, ref, set } from 'firebase/database';
-import {
-  addDoc,
   collection,
   deleteDoc,
   doc,
@@ -28,11 +20,7 @@ export const authWithProviders = async (type: AuthProviderTypes) => {
   const provider = AUTH_PROVIDERS[type];
 
   try {
-    if (provider === null) return null;
     const result = await signInWithPopup(auth, provider);
-
-    const credential = GoogleAuthProvider.credentialFromResult(result);
-    const token = credential?.accessToken;
     return result.user;
   } catch (error) {
     console.log(error);

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { RouterProvider, createBrowserRouter, createHashRouter } from 'react-router-dom';
+import { RouterProvider, createHashRouter } from 'react-router-dom';
 
 import {
   AdaptivityProvider,
@@ -22,6 +22,7 @@ const router = createHashRouter([
   {
     path: '/',
     element: <App />,
+
     children: [
       {
         path: '/',

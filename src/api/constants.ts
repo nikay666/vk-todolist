@@ -6,8 +6,7 @@ import {
 
 import { AuthProviderTypes } from './types';
 
-export const AUTH_PROVIDERS: Record<AuthProviderTypes, AuthProvider | null> = {
+export const AUTH_PROVIDERS: Record<AuthProviderTypes, AuthProvider> = {
   [AuthProviderTypes.github]: new GithubAuthProvider(),
   [AuthProviderTypes.google]: new GoogleAuthProvider(),
-  [AuthProviderTypes.vk]: null,
 };

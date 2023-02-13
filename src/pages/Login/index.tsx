@@ -30,7 +30,6 @@ const LoginPage = () => {
       <Header mode="secondary">Выберите способ авторизации</Header>
       <Cell onClick={() => authHandler(AuthProviderTypes.google)}>Google</Cell>
       <Cell onClick={() => authHandler(AuthProviderTypes.github)}>Github</Cell>
-      <Cell>VK</Cell>
     </Group>
   );
 };

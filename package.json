@@ -14,7 +14,6 @@
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@vkontakte/icons": "^2.14.0",
-    "@vkontakte/superappkit": "^1.58.5",
     "@vkontakte/vk-bridge": "^2.7.2",
     "@vkontakte/vkui": "^5.1.0",
     "firebase": "^9.17.1",
